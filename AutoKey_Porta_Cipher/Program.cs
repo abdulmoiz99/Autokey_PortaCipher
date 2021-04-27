@@ -10,6 +10,9 @@ namespace AutoKey_Porta_Cipher
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("AUTO KEY CIPHER");
+            AutoKey.Encrypt();
+            AutoKey.Decrypt();
         }
     }
 }
