@@ -4,43 +4,27 @@ namespace AutoKey_Porta_Cipher
 {
     class AutoKey
     {
-        public static char[] KeyStream(char[] plainText, char[] Key)
-        {
-            int index = 0;
-            char[] keyStream = new char[plainText.Length];
-            for (int i = 0; i < plainText.Length; i++)
-            {
-                if (i < Key.Length)
-                {
-                    keyStream[i] = Key[i];
-                }
-                else
-                {
-                    keyStream[i] = plainText[index++];
-                }
-            }
-            return keyStream;
-        }
+
         public static void Encrypt()
         {
             string PlainText = "THEREISANOTHERTHINGINCRYPTOGRAPHYTHATINCREASESTHECOMPLEXITYOFTHESYSTEM", Key = "Key size", cipherText = "";
-            Console.WriteLine("\nPlain Text: "+ PlainText);
-            Console.WriteLine("Key: "+ Key);
+            Console.WriteLine("\nPlain Text: " + PlainText);
+            Console.WriteLine("Key: " + Key);
 
             PlainText = PlainText.Replace(" ", string.Empty).ToUpper();
             Key = Key.Replace(" ", string.Empty).ToUpper();
 
             char[] PlainTextArray = PlainText.ToCharArray();
-            char[] keyStream = KeyStream(PlainTextArray, Key.ToCharArray());
+            char[] keyStream = Cipher.KeyStream(PlainTextArray, Key.ToCharArray());
 
 
 
             for (int i = 0; i < PlainText.Length; i++)
             {
 
-                int value = Main.GetAlphabetValue(PlainTextArray[i]) + Main.GetAlphabetValue(keyStream[i]);
+                int value = Cipher.GetAlphabetValue(PlainTextArray[i]) + Cipher.GetAlphabetValue(keyStream[i]);
                 value = value % 26;
-                cipherText += Main.GetAlphabetKey(value);
+                cipherText += Cipher.GetAlphabetKey(value);
             }
             Console.WriteLine("Encrypted Text: " + cipherText);
         }
@@ -57,7 +41,7 @@ namespace AutoKey_Porta_Cipher
             Key = Key.Replace(" ", string.Empty).ToUpper();
 
             char[] cipherTextArray = cipherText.ToCharArray();
-            char[] keyStream = KeyStream(cipherTextArray, Key.ToCharArray());
+            char[] keyStream = Cipher.KeyStream(cipherTextArray, Key.ToCharArray());
 
 
             int index = Key.Length;
@@ -66,21 +50,21 @@ namespace AutoKey_Porta_Cipher
             for (int i = 0; i < cipherText.Length; i++)
             {
 
-                int value = Main.GetAlphabetValue(cipherTextArray[i]) - Main.GetAlphabetValue(keyStream[i]);
+                int value = Cipher.GetAlphabetValue(cipherTextArray[i]) - Cipher.GetAlphabetValue(keyStream[i]);
                 value = value % 26;
                 value = (value < 0) ? value + 26 : value;
 
-                PlainText += Main.GetAlphabetKey(value);
+                PlainText += Cipher.GetAlphabetKey(value);
                 if (index < keystreamSize)
                 {
-                    keyStream[index] = Main.GetAlphabetKey(value);// To Add new key value
+                    keyStream[index] = Cipher.GetAlphabetKey(value);// To Add new key value
                     index++;
                 }
 
             }
             Console.WriteLine(keyStream);
 
-            Console.WriteLine("Decrypted Text: "+ PlainText);
+            Console.WriteLine("Decrypted Text: " + PlainText);
         }
     }
 }

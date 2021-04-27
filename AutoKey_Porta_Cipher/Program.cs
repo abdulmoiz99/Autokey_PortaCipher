@@ -10,9 +10,17 @@ namespace AutoKey_Porta_Cipher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("AUTO KEY CIPHER");
+            Console.WriteLine("AUTOKEY CIPHER\n");
             AutoKey.Encrypt();
             AutoKey.Decrypt();
+
+            Console.WriteLine("PORTA CIPHER\n");
+            Porta.Decrypt("GOIINDUGAFYBXJQOFBNUYNXJWHRCBINZOLNSNJPJVGYSETY", "BONUSMARKS");
+            Porta.Encrypt("THOSEWHOSOLVETHISWILLGETANEXTRAFIVEMARKSINFINAL", "BONUSMARKS");
+
+
+            Console.ReadKey();
+           
         }
     }
 }

@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoKey.cs" />
-    <Compile Include="Main.cs" />
+    <Compile Include="Cipher.cs" />
+    <Compile Include="Porta.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
